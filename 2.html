@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>直方图</title>
+    </head>
+    <body>
+        <svg id="svg01" width=800 height=600>
+            <text x="50%" y="30" text-anchor="middle" font-size="24px" fill="#222222">直方图</text>
+        </svg>
+        <script>
+            var w = window.innerWidth * 0.98;
+            var h = window.innerHeight * 0.98;
+            var svg = document.getElementById("svg01");
+            svg.setAttribute("width", w);
+            svg.setAttribute("height", h);
+            
+            var rec = new Array();
+            var txt = new Array();
+            var colors = ["#7D3C98", "#8E44AD", "#9B59B6", "#A569BD", "#BB8FCE"]; // 各种紫色
+            
+            for (var i = 0; i < 10; i++) {
+                rec[i] = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                txt[i] = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                
+                var rec_h = Math.floor(Math.random() * 255);
+                
+                rec[i].setAttribute("x", i * w / 10);
+                rec[i].setAttribute("y", 600 - rec_h);
+                rec[i].setAttribute("width", w / 10 - 5);
+                rec[i].setAttribute("height", rec_h);
+                rec[i].setAttribute("fill", colors[i % colors.length]);
+                svg.appendChild(rec[i]);
+                
+                txt[i].setAttribute("x", i * w / 10 + (w / 10 - 5) / 2);
+                txt[i].setAttribute("y", 600 - rec_h - 5);
+                txt[i].setAttribute("fill", "#222222"); // 黑色文字
+                txt[i].setAttribute("text-anchor", "middle");
+                txt[i].setAttribute("font-size", "14px");
+                txt[i].textContent = rec_h;
+                svg.appendChild(txt[i]);
+            }
+        </script>
+    </body>
+</html>
+
